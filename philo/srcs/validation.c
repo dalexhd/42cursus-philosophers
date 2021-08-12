@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 12:45:17 by aborboll          #+#    #+#             */
-/*   Updated: 2021/08/12 14:15:20 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/08/12 14:31:55 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,8 @@ static	t_bool	check_args(int argc, char **argv)
 
 t_bool	validate_args(int argc, char **argv)
 {
-	int		i;
 	t_bool	ret;
 
-	i = 0;
 	ret = TRUE;
 	if (argc < 5 || argc > 6)
 	{

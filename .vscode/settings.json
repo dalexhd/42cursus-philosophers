@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "philo.h": "c",
+        "internal.h": "c"
+    },
+    "editor.defaultFormatter": "xaver.clang-format",
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": false,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": false,
+    "editor.renderWhitespace": "all",
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+}

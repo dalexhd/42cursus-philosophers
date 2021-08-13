@@ -6,11 +6,11 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 12:49:17 by aborboll          #+#    #+#             */
-/*   Updated: 2021/08/12 14:13:11 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/08/13 12:51:47 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/philo.h"
+#include "../../includes/core.h"
 
 t_bool	ft_strevery(char const *s, t_bool (*f)(int))
 {
@@ -20,7 +20,7 @@ t_bool	ft_strevery(char const *s, t_bool (*f)(int))
 	while (++i < ft_strlen(s))
 	{
 		if (!f(s[i]))
-			return (FALSE);
+			return (false);
 	}
-	return (TRUE);
+	return (true);
 }

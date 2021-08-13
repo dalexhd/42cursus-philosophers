@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/12 13:11:41 by aborboll          #+#    #+#             */
+/*   Created: 2021/08/13 12:47:16 by aborboll          #+#    #+#             */
 /*   Updated: 2021/08/13 12:51:47 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/core.h"
 
-void	ft_bzero(void *s, size_t n)
+void	ft_error(char *s)
 {
-	char	*p;
-	int		i;
-
-	i = 0;
-	p = s;
-	while (n-- > 0)
-		p[i++] = '\0';
+	ft_putstr_fd(s, STDERR_FILENO);
 }

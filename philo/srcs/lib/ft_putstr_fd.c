@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/12 13:11:41 by aborboll          #+#    #+#             */
+/*   Created: 2021/08/13 12:46:42 by aborboll          #+#    #+#             */
 /*   Updated: 2021/08/13 12:51:47 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/core.h"
 
-void	ft_bzero(void *s, size_t n)
+void	ft_putstr_fd(char *s, int fd)
 {
-	char	*p;
-	int		i;
+	int	i;
 
-	i = 0;
-	p = s;
-	while (n-- > 0)
-		p[i++] = '\0';
+	if (*s != '\0' && fd != '\0')
+	{
+		i = 0;
+		while (s[i] != '\0')
+			ft_putchar_fd(s[i++], fd);
+	}
 }

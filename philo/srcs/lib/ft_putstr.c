@@ -6,11 +6,11 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:42:11 by aborboll          #+#    #+#             */
-/*   Updated: 2021/08/12 12:07:06 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/08/13 12:51:47 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/philo.h"
+#include "../../includes/core.h"
 
 void	ft_putstr(char *s)
 {

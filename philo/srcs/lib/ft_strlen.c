@@ -6,11 +6,11 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 12:49:44 by aborboll          #+#    #+#             */
-/*   Updated: 2021/08/12 14:13:13 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/08/13 12:51:47 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/philo.h"
+#include "../../includes/core.h"
 
 size_t	ft_strlen(const char *s)
 {

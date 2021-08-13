@@ -6,11 +6,11 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 13:48:37 by aborboll          #+#    #+#             */
-/*   Updated: 2021/08/12 13:48:43 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/08/13 12:51:47 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/philo.h"
+#include "../../includes/core.h"
 
 int	ft_atoi(const char *str)
 {

@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/12 13:11:41 by aborboll          #+#    #+#             */
+/*   Created: 2019/11/05 13:49:12 by aborboll          #+#    #+#             */
 /*   Updated: 2021/08/13 12:51:47 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/core.h"
 
-void	ft_bzero(void *s, size_t n)
+char	*ft_strcat(char *s1, const char *s2)
 {
-	char	*p;
-	int		i;
+	int	i;
+	int	z;
 
-	i = 0;
-	p = s;
-	while (n-- > 0)
-		p[i++] = '\0';
+	i = ft_strlen(s1);
+	z = 0;
+	while (s2[z] != '\0')
+	{
+		s1[z + i] = s2[z];
+		z++;
+	}
+	s1[i + z] = '\0';
+	return (s1);
 }

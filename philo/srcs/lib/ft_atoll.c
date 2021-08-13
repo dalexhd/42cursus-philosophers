@@ -6,11 +6,11 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 12:45:34 by aborboll          #+#    #+#             */
-/*   Updated: 2021/08/12 12:50:13 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/08/13 12:51:47 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/philo.h"
+#include "../../includes/core.h"
 
 t_llong	ft_atoll(const char *str)
 {

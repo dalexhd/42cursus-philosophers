@@ -1,0 +1,45 @@
+{
+	// Use IntelliSense to learn about possible attributes.
+	// Hover to view descriptions of existing attributes.
+	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "(gdb) Parent Fork (philo)",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/philo/philo",
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}/philo",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "gdb",
+			"args": [
+				"2",
+				"3",
+				"4",
+				"-4"
+			],
+			"setupCommands": [
+				{
+					"description": "Habilitar la impresión con sangría para gdb",
+					"text": "-gdb-set follow-fork-mode parent",
+					"ignoreFailures": true
+				}
+			]
+		},
+		{
+			"type": "lldb",
+			"request": "launch",
+			"name": "Launch",
+			"program": "${workspaceFolder}/philo/philo",
+			"args": [
+				"2",
+				"3",
+				"4",
+				"-4"
+			],
+			"cwd": "${workspaceFolder}"
+		}
+	]
+}

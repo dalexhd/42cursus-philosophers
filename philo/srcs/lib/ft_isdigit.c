@@ -6,15 +6,15 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:41:40 by aborboll          #+#    #+#             */
-/*   Updated: 2021/08/12 12:50:09 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/08/13 12:51:47 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/philo.h"
+#include "../../includes/core.h"
 
 t_bool	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
-		return (TRUE);
-	return (FALSE);
+		return (true);
+	return (false);
 }

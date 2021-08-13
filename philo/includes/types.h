@@ -6,14 +6,12 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 16:42:12 by aborboll          #+#    #+#             */
-/*   Updated: 2021/08/12 11:49:16 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/08/13 12:41:17 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPES_H
 # define TYPES_H
-# define TRUE 1
-# define FALSE 0
 
 typedef unsigned char			t_uchar;
 typedef signed char				t_schar;

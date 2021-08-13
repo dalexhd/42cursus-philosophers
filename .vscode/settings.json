@@ -1,7 +1,8 @@
 {
     "files.associations": {
-        "philo.h": "c",
-        "internal.h": "c"
+        "core.h": "c",
+        "internal.h": "c",
+        "stdbool.h": "c"
     },
     "editor.defaultFormatter": "xaver.clang-format",
     "editor.formatOnPaste": false,

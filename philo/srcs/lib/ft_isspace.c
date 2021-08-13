@@ -6,11 +6,11 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 14:14:46 by aborboll          #+#    #+#             */
-/*   Updated: 2021/08/12 12:50:04 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/08/13 12:51:47 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/philo.h"
+#include "../../includes/core.h"
 
 t_bool	ft_isspace(int c)
 {
@@ -20,6 +20,6 @@ t_bool	ft_isspace(int c)
 		|| c == '\r'
 		|| c == '\f'
 		|| c == '\v')
-		return (TRUE);
-	return (FALSE);
+		return (true);
+	return (false);
 }

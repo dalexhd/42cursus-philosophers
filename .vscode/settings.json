@@ -2,7 +2,12 @@
     "files.associations": {
         "core.h": "c",
         "internal.h": "c",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "unistd.h": "c",
+        "stdlib.h": "c",
+        "limits.h": "c",
+        "math.h": "c",
+        "fcntl.h": "c"
     },
     "editor.defaultFormatter": "xaver.clang-format",
     "editor.formatOnPaste": false,

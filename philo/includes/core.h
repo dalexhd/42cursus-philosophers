@@ -19,9 +19,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
-# include <fcntl.h>
-# include <math.h>
 # include <stdbool.h>
+# include <pthread.h>
 
 /*
 ** Incluimos nuestros types.
@@ -52,6 +51,7 @@ typedef struct s_core
 */
 
 t_core	*initialize(int argc, char **argv);
+t_bool	initialize_thread(t_core *core);
 t_bool	validate_args(int argc, char **argv);
 
 /*

@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 13:07:51 by aborboll          #+#    #+#             */
-/*   Updated: 2021/08/13 13:04:36 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/08/13 14:55:12 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,28 @@ t_core	*initialize(int argc, char **argv)
 	else
 		core->n_times = -1;
 	return (core);
+}
+
+void	*exec_thread(void *vargp)
+{
+	(void)vargp;
+	sleep(1);
+	ft_putstr("Init thread!\n");
+	return (NULL);
+}
+
+t_bool	initialize_thread(t_core *core)
+{
+	size_t		i;
+	pthread_t	thread;
+
+	i = 0;
+	while (i < core->n_ph)
+	{
+		pthread_create(&thread, NULL, exec_thread, NULL);
+		pthread_join(thread, NULL);
+		i++;
+	}
+	ft_putstr("Finish thread!\n");
+	return (true);
 }

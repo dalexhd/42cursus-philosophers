@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 13:07:51 by aborboll          #+#    #+#             */
-/*   Updated: 2021/08/13 12:51:47 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/08/13 13:04:36 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@ t_core	*initialize(int argc, char **argv)
 	core->t_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
 		core->n_times = ft_atoi(argv[5]);
+	else
+		core->n_times = -1;
 	return (core);
 }

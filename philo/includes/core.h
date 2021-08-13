@@ -44,7 +44,7 @@ typedef struct s_core
 	size_t	t_die;
 	size_t	t_eat;
 	size_t	t_sleep;
-	size_t	n_times;
+	t_llong	n_times;
 }				t_core;
 
 /*

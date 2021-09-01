@@ -21,6 +21,7 @@
 # include <limits.h>
 # include <stdbool.h>
 # include <pthread.h>
+# include <string.h>
 
 /*
 ** Incluimos nuestros types.
@@ -37,13 +38,26 @@
 */
 # include "internal.h"
 
+typedef struct s_forks
+{
+	int			right;
+	int			left;
+}				t_forks;
+
+typedef struct s_philo
+{
+	pthread_t	thread;
+	t_forks		forks;
+}				t_philo;
+
 typedef struct s_core
 {
-	size_t	n_ph;
-	size_t	t_die;
-	size_t	t_eat;
-	size_t	t_sleep;
-	t_llong	n_times;
+	size_t		n_ph;
+	size_t		t_die;
+	size_t		t_eat;
+	size_t		t_sleep;
+	t_llong		n_times;
+	t_philo		*philo;
 }				t_core;
 
 /*
@@ -51,8 +65,9 @@ typedef struct s_core
 */
 
 t_core	*initialize(int argc, char **argv);
-t_bool	initialize_thread(t_core *core);
+t_bool	initialize_threads(t_core *core);
 t_bool	validate_args(int argc, char **argv);
+void	clear_memory(t_core *core);
 
 /*
 ** Definimos las funciones de la lib

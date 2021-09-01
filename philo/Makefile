@@ -29,7 +29,7 @@ VER					=	$(shell lsb_release -sr)
 
 # Mandatory part
 
-SRCS				=	validation.c			initialization.c
+SRCS				=	validation.c			initialization.c		memory.c
 
 LIB					= 	ft_atoll.c				ft_isdigit.c			ft_isspace.c			ft_putchar.c	\
 						ft_putstr.c				ft_strlen.c				ft_strevery.c			ft_bzero.c		\

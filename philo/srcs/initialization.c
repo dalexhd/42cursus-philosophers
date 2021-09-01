@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 13:07:51 by aborboll          #+#    #+#             */
-/*   Updated: 2021/08/13 14:55:12 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/09/01 16:23:07 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_core	*initialize(int argc, char **argv)
 	core->t_die = ft_atoi(argv[2]);
 	core->t_eat = ft_atoi(argv[3]);
 	core->t_sleep = ft_atoi(argv[4]);
+	core->philo = (t_philo *)malloc(sizeof(t_philo) * core->n_ph);
 	if (argc == 6)
 		core->n_times = ft_atoi(argv[5]);
 	else
@@ -32,23 +33,31 @@ t_core	*initialize(int argc, char **argv)
 void	*exec_thread(void *vargp)
 {
 	(void)vargp;
-	sleep(1);
 	ft_putstr("Init thread!\n");
 	return (NULL);
 }
 
-t_bool	initialize_thread(t_core *core)
+t_bool	initialize_threads(t_core *core)
 {
-	size_t		i;
 	pthread_t	thread;
+	size_t		i;
+	int			err;
 
+	i = -1;
+	while (++i < core->n_ph)
+	{
+		err = pthread_create(&thread, NULL, exec_thread, NULL);
+		if (err)
+		{
+			ft_error(strerror(err));
+			return (false);
+		}
+		core->philo[i].thread = thread;
+		core->philo[i].forks.right = 0;
+		core->philo[i].forks.left = 0;
+	}
 	i = 0;
 	while (i < core->n_ph)
-	{
-		pthread_create(&thread, NULL, exec_thread, NULL);
-		pthread_join(thread, NULL);
-		i++;
-	}
-	ft_putstr("Finish thread!\n");
+		pthread_join(core->philo[i++].thread, NULL);
 	return (true);
 }

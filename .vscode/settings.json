@@ -8,7 +8,10 @@
         "limits.h": "c",
         "math.h": "c",
         "fcntl.h": "c",
-        "pthread.h": "c"
+        "pthread.h": "c",
+        "string.h": "c",
+        "stdio.h": "c",
+        "time.h": "c"
     },
     "editor.defaultFormatter": "xaver.clang-format",
     "editor.formatOnPaste": false,

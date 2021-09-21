@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 16:11:17 by aborboll          #+#    #+#             */
-/*   Updated: 2021/08/13 12:18:23 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/09/20 17:04:23 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,14 @@
 # define ERR_BAD_T_SLEEP "Error: Argument 'time_to_sleep' must be > 0\n"
 # define ERR_BAD_N_TIMES_1 "Error: Argument 'number_of_times_each_philosopher"
 # define ERR_BAD_N_TIMES_2 "_must_eat' must be > 0\n"
+
+/*
+** Define debug lines
+*/
+# define D_R_FORKING "has taken a fork"
+# define D_R_EATING "is eating"
+# define D_R_SLEEPING "is eating"
+# define D_R_THINKING "is thinking"
+# define D_R_DIED "died"
 
 #endif

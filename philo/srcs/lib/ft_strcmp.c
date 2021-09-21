@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/05 13:42:11 by aborboll          #+#    #+#             */
-/*   Updated: 2021/08/13 12:51:47 by aborboll         ###   ########.fr       */
+/*   Created: 2019/11/05 13:49:12 by aborboll          #+#    #+#             */
+/*   Updated: 2021/09/20 16:12:06 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/core.h"
 
-void	ft_putstr(char *s)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	int	i;
+	t_ulong	i;
+	t_uchar	*d;
+	t_uchar	*e;
 
-	if (*s != '\0')
-	{
-		i = 0;
-		while (s[i] != '\0')
-			ft_putchar(s[i++]);
-	}
+	d = (t_uchar *)s1;
+	e = (t_uchar *)s2;
+	i = 0;
+	while ((d[i] == e[i]) && d[i] != '\0' && e[i] != '\0')
+		i++;
+	return (d[i] - e[i]);
 }

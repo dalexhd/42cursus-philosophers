@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 11:45:43 by aborboll          #+#    #+#             */
-/*   Updated: 2021/09/01 16:23:08 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/09/20 17:04:24 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@ int	main(int argc, char **argv)
 		core = initialize(argc, argv);
 		if (initialize_threads(core))
 		{
-			ft_putstr("All threads initialized!\n");
+			printf("All threads finished!\n");
 			clear_memory(core);
 			return (0);
 		}
+		clear_memory(core);
 	}
 	return (1);
 }

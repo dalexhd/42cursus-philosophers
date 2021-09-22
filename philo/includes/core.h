@@ -42,8 +42,8 @@
 
 typedef struct s_forks
 {
-	int			right;
-	int			left;
+	pthread_mutex_t	*right;
+	pthread_mutex_t	*left;
 }				t_forks;
 
 typedef struct s_philo
@@ -62,6 +62,7 @@ typedef struct s_core
 	size_t			t_eat;
 	size_t			t_sleep;
 	t_llong			n_times;
+	size_t			ph_n;
 	t_philo			*philo;
 	pthread_mutex_t	mutex;
 }				t_core;
@@ -93,6 +94,7 @@ void	ft_bzero(void *s, size_t n);
 int		ft_atoi(const char *str);
 char	*ft_strcat(char *s1, const char *s2);
 int		ft_strcmp(const char *s1, const char *s2);
+void	*ft_calloc(size_t count, size_t size);
 void	ft_error(char *s);
 
 #endif

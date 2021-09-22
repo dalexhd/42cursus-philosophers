@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 13:07:51 by aborboll          #+#    #+#             */
-/*   Updated: 2021/09/20 16:50:24 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/09/22 18:44:05 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,6 @@ void	report_status(t_philo *philo)
 		printf("%lld %zu %s\n", milliseconds, philo->n, D_R_THINKING);
 	else if (!ft_strcmp(philo->status, "died"))
 		printf("%lld %zu %s\n", milliseconds, philo->n, D_R_DIED);
+	else if (!ft_strcmp(philo->status, "test"))
+		printf("Pointer: %lld %zu left: %p right: %p\n", milliseconds, philo->n, philo->forks.left, philo->forks.right);
 }

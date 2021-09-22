@@ -11,7 +11,6 @@ HEADER_DIR			=	includes/
 OBJ_DIR				=	obj/
 SRC_DIR				=	srcs/
 LIB_DIR				=	lib/
-VALIDATION_DIR		=	validation/
 ifeq ($(shell whoami), runner)
 	COVID_NORM		=	ruby ~/.norminette/norminette.rb
 else

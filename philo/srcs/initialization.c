@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 13:07:51 by aborboll          #+#    #+#             */
-/*   Updated: 2021/09/22 18:52:25 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/09/22 18:56:37 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,6 @@ t_bool	initialize_threads(t_core *core)
 	}
 	i = 0;
 	while (i < core->n_ph)
-	{
 		pthread_join(core->philo[i++].thread, NULL);
-	}
 	return (true);
 }

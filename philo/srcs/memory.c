@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 16:01:28 by aborboll          #+#    #+#             */
-/*   Updated: 2021/09/22 18:44:22 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/09/26 15:08:50 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	clear_memory(t_core *core)
 {
 	size_t	i;
 
-	i = 0;
-	while (i < core->n_ph)
+	i = 1;
+	while (i <= core->n_ph)
 	{
 		free(core->philo[i].forks.right);
 		i++;

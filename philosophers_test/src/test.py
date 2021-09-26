@@ -1,20 +1,21 @@
-# ############################################################################ #
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    test.py                                            :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: charles <me@cacharle.xyz>                  +#+  +:+       +#+         #
+#    By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/27 11:36:32 by charles           #+#    #+#              #
-#    Updated: 2021/01/03 13:53:38 by cacharle         ###   ########.fr        #
+#    Updated: 2021/09/26 19:56:00 by aborboll         ###   ########.fr        #
 #                                                                              #
-# ############################################################################ #
+# **************************************************************************** #
 
 import os
 import subprocess
 
 import config
 import philo
+import sys
 from helper import current_ms, red, green
 
 
@@ -73,6 +74,8 @@ class Test:
             green("[PASS] {:3}".format(pass_total)),
             red("[FAIL] {:3}".format(fail_total))
         ))
+        if fail_total > 0:
+            sys.exit(1);
 
     def _run_tested(self):
         start_time = current_ms()

@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 13:07:51 by aborboll          #+#    #+#             */
-/*   Updated: 2021/09/26 17:48:52 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/09/26 18:04:39 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,9 @@ t_bool	initialize_threads(t_core *core)
 	int			err;
 	size_t		i;
 
-	pthread_mutex_init(&core->mutex, NULL);
 	i = 1;
 	while (i <= core->n_ph)
 	{
-		pthread_mutex_lock(&core->mutex);
 		fill_philo(core, i);
 		err = pthread_create(&core->philo[i].thread, NULL, monitor,
 				(void *)&core->philo[i]);
@@ -86,7 +84,6 @@ t_bool	initialize_threads(t_core *core)
 			ft_error(strerror(err));
 			return (false);
 		}
-		pthread_mutex_unlock(&core->mutex);
 		i++;
 	}
 	i = 0;

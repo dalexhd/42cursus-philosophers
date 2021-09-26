@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 13:07:51 by aborboll          #+#    #+#             */
-/*   Updated: 2021/09/22 18:56:37 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/09/26 15:03:39 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_core	*initialize(int argc, char **argv)
 	core->t_die = ft_atoi(argv[2]);
 	core->t_eat = ft_atoi(argv[3]);
 	core->t_sleep = ft_atoi(argv[4]);
-	core->philo = (t_philo *)ft_calloc(core->n_ph, sizeof(t_philo));
+	core->philo = (t_philo *)ft_calloc(core->n_ph + 1, sizeof(t_philo));
 	if (argc == 6)
 		core->n_times = ft_atoi(argv[5]);
 	else
@@ -38,15 +38,15 @@ static	void	*fill_philo(t_core *core, size_t i)
 	philo->n = i;
 	philo->forks.right = malloc(sizeof(pthread_mutex_t));
 	pthread_mutex_init(philo->forks.right, NULL);
-	if (philo->n > 0)
+	if (philo->n > 1)
 		philo->forks.left = core->philo[philo->n - 1].forks.right;
-	if (philo->n == core->n_ph - 1)
-		core->philo[0].forks.left = philo->forks.right;
+	if (philo->n == core->n_ph)
+		core->philo[1].forks.left = philo->forks.right;
 	philo->status = "test";
-	if (philo->n != 0)
+	if (philo->n != 1)
 		report_status(&core->philo[i]);
-	if (philo->n == core->n_ph - 1)
-		report_status(&core->philo[0]);
+	if (philo->n == core->n_ph)
+		report_status(&core->philo[1]);
 	return (NULL);
 }
 
@@ -62,8 +62,8 @@ t_bool	initialize_threads(t_core *core)
 	size_t		i;
 
 	pthread_mutex_init(&core->mutex, NULL);
-	i = 0;
-	while (i < core->n_ph)
+	i = 1;
+	while (i <= core->n_ph)
 	{
 		pthread_mutex_lock(&core->mutex);
 		fill_philo(core, i);

@@ -27,6 +27,5 @@ jobs:
       - name: Compile
         working-directory: philo
         run: make
-      - name: Execute
-        working-directory: philo
-        run: ./philo 7 100 50 50
+      - name: Run philo1 test
+        run: ./philosophers_test/run -p 1

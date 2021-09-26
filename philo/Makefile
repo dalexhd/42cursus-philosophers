@@ -5,7 +5,7 @@ OUTPUT				=	philo
 CC					=	@gcc
 SH					=	@bash
 RM					=	@/bin/rm -rf
-FLAGS				=	-Wextra -Wall -Werror -g3 -fsanitize=address
+FLAGS				=	-Wextra -Wall -Werror -pthread -g3 -fsanitize=address
 
 HEADER_DIR			=	includes/
 OBJ_DIR				=	obj/
@@ -29,7 +29,7 @@ VER					=	$(shell lsb_release -sr)
 # Mandatory part
 
 SRCS				=	validation.c			initialization.c		memory.c				logging.c	\
-						runtime.c
+						runtime.c				utils.c
 
 LIB					= 	ft_atoll.c				ft_isdigit.c			ft_isspace.c			ft_strlen.c	\
 						ft_strevery.c			ft_bzero.c				ft_atoi.c				ft_error.c	\

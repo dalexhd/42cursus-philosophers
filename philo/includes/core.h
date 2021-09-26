@@ -55,6 +55,9 @@ typedef struct s_philo
 	size_t			t_eat;
 	size_t			t_sleep;
 	t_llong			n_times;
+	t_llong			start_time;
+	pthread_mutex_t	*log;
+	int				*any_died;
 	char			*status;
 }				t_philo;
 
@@ -64,10 +67,13 @@ typedef struct s_core
 	size_t			t_die;
 	size_t			t_eat;
 	size_t			t_sleep;
+	t_llong			start_time;
 	t_llong			n_times;
 	size_t			ph_n;
 	t_philo			*philo;
 	pthread_mutex_t	mutex;
+	int				any_died;
+	pthread_mutex_t	*log;
 }				t_core;
 
 /*
@@ -84,6 +90,7 @@ t_bool	eating(t_philo *philo);
 t_bool	sleeping(t_philo *philo);
 t_bool	thinking(t_philo *philo);
 t_bool	died(t_philo *philo);
+t_llong	get_time(void);
 
 /*
 ** Definimos las funciones de la lib

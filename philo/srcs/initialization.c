@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 13:07:51 by aborboll          #+#    #+#             */
-/*   Updated: 2021/09/26 18:04:39 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/09/26 19:38:26 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,18 @@ t_core	*initialize(int argc, char **argv)
 	core->t_die = ft_atoi(argv[2]);
 	core->t_eat = ft_atoi(argv[3]);
 	core->t_sleep = ft_atoi(argv[4]);
+	core->start_time = get_time();
+	core->any_died = false;
 	core->philo = (t_philo *)ft_calloc(core->n_ph + 1, sizeof(t_philo));
+	core->log = malloc(sizeof(pthread_mutex_t));
 	if (argc == 6)
 		core->n_times = ft_atoi(argv[5]);
 	else
-		core->n_times = -1;
+		core->n_times = 1;
 	return (core);
 }
 
-static	void	*fill_philo(t_core *core, size_t i)
+static	void	fill_philo(t_core *core, size_t i)
 {
 	t_philo	*philo;
 
@@ -39,6 +42,10 @@ static	void	*fill_philo(t_core *core, size_t i)
 	philo->t_die = core->t_die;
 	philo->t_eat = core->t_eat;
 	philo->t_sleep = core->t_sleep;
+	philo->n_times = core->n_times;
+	philo->start_time = core->start_time;
+	philo->any_died = &core->any_died;
+	philo->log = core->log;
 	if (philo->n == 1)
 	{
 		core->philo[core->n_ph].forks.right = malloc(sizeof(pthread_mutex_t));
@@ -53,18 +60,23 @@ static	void	*fill_philo(t_core *core, size_t i)
 		philo->forks.left = core->philo[philo->n - 1].forks.right;
 	else
 		philo->forks.left = core->philo[core->n_ph].forks.right;
-	return (NULL);
 }
 
 static	void	*monitor(void *arg)
 {
 	t_philo	*philo;
+	t_llong	times;
 
+	times = 0;
 	philo = ((t_philo *)arg);
-	forking(philo);
-	eating(philo);
-	usleep(philo->t_eat * 1000);
-	sleeping(philo);
+	while (times < philo->n_times)
+	{
+		forking(philo);
+		eating(philo);
+		sleeping(philo);
+		thinking(philo);
+		times++;
+	}
 	return (NULL);
 }
 
@@ -74,6 +86,7 @@ t_bool	initialize_threads(t_core *core)
 	size_t		i;
 
 	i = 1;
+	pthread_mutex_init(core->log, NULL);
 	while (i <= core->n_ph)
 	{
 		fill_philo(core, i);

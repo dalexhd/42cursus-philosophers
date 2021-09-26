@@ -15,10 +15,10 @@
 			"externalConsole": false,
 			"MIMode": "gdb",
 			"args": [
-				"30",
-				"3",
 				"4",
-				"4"
+				"410",
+				"200",
+				"200"
 			],
 			"setupCommands": [
 				{

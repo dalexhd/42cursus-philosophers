@@ -51,8 +51,11 @@ typedef struct s_philo
 	pthread_t		thread;
 	t_forks			forks;
 	size_t			n;
+	size_t			t_die;
+	size_t			t_eat;
+	size_t			t_sleep;
+	t_llong			n_times;
 	char			*status;
-	pthread_mutex_t	mutex;
 }				t_philo;
 
 typedef struct s_core
@@ -76,6 +79,11 @@ t_bool	initialize_threads(t_core *core);
 t_bool	validate_args(int argc, char **argv);
 void	report_status(t_philo *philo);
 void	clear_memory(t_core *core);
+t_bool	forking(t_philo *philo);
+t_bool	eating(t_philo *philo);
+t_bool	sleeping(t_philo *philo);
+t_bool	thinking(t_philo *philo);
+t_bool	died(t_philo *philo);
 
 /*
 ** Definimos las funciones de la lib

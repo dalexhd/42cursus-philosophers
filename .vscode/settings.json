@@ -11,7 +11,10 @@
         "pthread.h": "c",
         "string.h": "c",
         "stdio.h": "c",
-        "time.h": "c"
+        "time.h": "c",
+        "__mutex_base": "c",
+        "mutex": "c",
+        "version": "c"
     },
     "editor.defaultFormatter": "xaver.clang-format",
     "editor.formatOnPaste": false,

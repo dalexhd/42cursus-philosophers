@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 16:11:17 by aborboll          #+#    #+#             */
-/*   Updated: 2021/09/20 17:04:23 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/09/26 16:51:29 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 */
 # define D_R_FORKING "has taken a fork"
 # define D_R_EATING "is eating"
-# define D_R_SLEEPING "is eating"
+# define D_R_SLEEPING "is sleeping"
 # define D_R_THINKING "is thinking"
 # define D_R_DIED "died"
 

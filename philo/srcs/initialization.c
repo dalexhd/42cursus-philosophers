@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 13:07:51 by aborboll          #+#    #+#             */
-/*   Updated: 2021/09/26 15:03:39 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/09/26 17:48:52 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,35 @@ static	void	*fill_philo(t_core *core, size_t i)
 
 	philo = &core->philo[i];
 	philo->n = i;
-	philo->forks.right = malloc(sizeof(pthread_mutex_t));
-	pthread_mutex_init(philo->forks.right, NULL);
+	philo->t_die = core->t_die;
+	philo->t_eat = core->t_eat;
+	philo->t_sleep = core->t_sleep;
+	if (philo->n == 1)
+	{
+		core->philo[core->n_ph].forks.right = malloc(sizeof(pthread_mutex_t));
+		pthread_mutex_init(core->philo[core->n_ph].forks.right, NULL);
+	}
+	if (philo->n < core->n_ph)
+	{
+		philo->forks.right = malloc(sizeof(pthread_mutex_t));
+		pthread_mutex_init(philo->forks.right, NULL);
+	}
 	if (philo->n > 1)
 		philo->forks.left = core->philo[philo->n - 1].forks.right;
-	if (philo->n == core->n_ph)
-		core->philo[1].forks.left = philo->forks.right;
-	philo->status = "test";
-	if (philo->n != 1)
-		report_status(&core->philo[i]);
-	if (philo->n == core->n_ph)
-		report_status(&core->philo[1]);
+	else
+		philo->forks.left = core->philo[core->n_ph].forks.right;
 	return (NULL);
 }
 
-static	void	*test(void *arg)
+static	void	*monitor(void *arg)
 {
-	(void)arg;
+	t_philo	*philo;
+
+	philo = ((t_philo *)arg);
+	forking(philo);
+	eating(philo);
+	usleep(philo->t_eat * 1000);
+	sleeping(philo);
 	return (NULL);
 }
 
@@ -67,8 +79,8 @@ t_bool	initialize_threads(t_core *core)
 	{
 		pthread_mutex_lock(&core->mutex);
 		fill_philo(core, i);
-		err = pthread_create(&core->philo[i].thread, NULL, test,
-				(void *)&core);
+		err = pthread_create(&core->philo[i].thread, NULL, monitor,
+				(void *)&core->philo[i]);
 		if (err)
 		{
 			ft_error(strerror(err));

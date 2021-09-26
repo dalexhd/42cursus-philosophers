@@ -31,9 +31,8 @@ VER					=	$(shell lsb_release -sr)
 SRCS				=	validation.c			initialization.c		memory.c				logging.c
 
 LIB					= 	ft_atoll.c				ft_isdigit.c			ft_isspace.c			ft_strlen.c	\
-						ft_strevery.c			ft_bzero.c				ft_atoi.c				ft_strcat.c	\
-						ft_error.c				ft_strcmp.c				ft_putchar_fd.c			ft_putstr_fd.c	\
-						ft_calloc.c
+						ft_strevery.c			ft_bzero.c				ft_atoi.c				ft_error.c	\
+						ft_strcmp.c				ft_putchar_fd.c			ft_putstr_fd.c			ft_calloc.c
 
 SOURCES				=	$(SRCS) $(addprefix $(LIB_DIR),$(LIB))
 
@@ -146,30 +145,9 @@ re:			## Call fclean => all
 
 ##@ Testing
 
-test:		## Make minishell test
-			make re && cd 42_minishell_tester && ./grademe.sh -c
+test:		## Make test
+			@echo Please set a test script on the makefile.
 
-leak:		## Run memory leak for valid cub file.
-			@if [ $(shell ./tools/memory_leak.sh $(OUTPUT) -c $$FOO $(LEAKS_FLAGS) && cat valgrind_out | grep "definitely lost:" | cut -d : -f 2 | cut -d b  -f 1 | tr -d " " | tr -d ",") ]; then\
-				echo ${BOLD}${UND}${R}🚨 Memory leaks detected${X};\
-				if [ $(USER) = "runner" ]; then\
-					cat valgrind_out;\
-				else\
-					echo ${G};cat valgrind_out | grep -A2 "HEAP SUMMARY:" | cut -d = -f 5 | cut -c 2-;\
-					echo ${CYAN};cat valgrind_out | grep -A5 "LEAK SUMMARY:" | cut -d = -f 5 | cut -c 2-;\
-				fi;\
-				exit 1;\
-			else\
-				echo ☕ ${BOLD}${UND}${G}No memory leaks detected${X} ☕;\
-				echo ${CYAN};cat valgrind_out | grep -A4 "HEAP SUMMARY:" | cut -d = -f 5 | cut -c 2-;\
-			fi
-
-##@ Helpers
-kill:		## Kill all minishells
-			@pkill -f $(OUTPUT)
-
-escape:		## Kill all minishells
-			./tools/escaper.sh
 ##@ Help
 help:		## View all available commands.
 			$(shell $(TARGETS_EXE))

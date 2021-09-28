@@ -147,7 +147,7 @@ re:			## Call fclean => all
 ##@ Testing
 
 test:		## Make test
-			@echo Please set a test script on the makefile.
+			cd .. && ./philosophers_test/run -p 1
 
 ##@ Help
 help:		## View all available commands.

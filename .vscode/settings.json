@@ -14,7 +14,9 @@
         "time.h": "c",
         "__mutex_base": "c",
         "mutex": "c",
-        "version": "c"
+        "version": "c",
+        "cmath": "c",
+        "*.tcc": "c"
     },
     "editor.defaultFormatter": "xaver.clang-format",
     "editor.formatOnPaste": false,

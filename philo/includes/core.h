@@ -51,12 +51,13 @@ typedef struct s_philo
 	pthread_t		thread;
 	t_forks			forks;
 	size_t			n;
+	size_t			n_ph;
 	size_t			t_die;
 	size_t			t_eat;
 	size_t			t_sleep;
 	t_llong			n_times;
 	t_llong			start_time;
-	pthread_mutex_t	*log;
+	pthread_mutex_t	*shared_mutex;
 	int				*any_died;
 	char			*status;
 }				t_philo;
@@ -71,9 +72,8 @@ typedef struct s_core
 	t_llong			n_times;
 	size_t			ph_n;
 	t_philo			*philo;
-	pthread_mutex_t	mutex;
 	int				any_died;
-	pthread_mutex_t	*log;
+	pthread_mutex_t	*shared_mutex;
 }				t_core;
 
 /*

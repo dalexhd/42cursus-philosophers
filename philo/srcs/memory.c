@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 16:01:28 by aborboll          #+#    #+#             */
-/*   Updated: 2021/09/26 19:21:42 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/09/28 17:03:12 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	clear_memory(t_core *core)
 		free(core->philo[i].forks.right);
 		i++;
 	}
-	free(core->log);
+	free(core->shared_mutex);
 	free(core->philo);
 	free(core);
 }

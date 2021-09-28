@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 15:34:14 by aborboll          #+#    #+#             */
-/*   Updated: 2021/09/26 19:44:27 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/09/28 17:22:29 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,10 @@ t_bool	thinking(t_philo *philo)
 
 t_bool	died(t_philo *philo)
 {
-	pthread_mutex_lock(philo->log);
+	pthread_mutex_lock(philo->shared_mutex);
 	philo->status = "died";
 	report_status(philo);
 	philo->any_died[0] = true;
-	pthread_mutex_unlock(philo->log);
-	exit(0);
+	pthread_mutex_unlock(philo->shared_mutex);
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 13:07:51 by aborboll          #+#    #+#             */
-/*   Updated: 2021/09/26 19:38:26 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/09/28 17:15:14 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_core	*initialize(int argc, char **argv)
 	core->start_time = get_time();
 	core->any_died = false;
 	core->philo = (t_philo *)ft_calloc(core->n_ph + 1, sizeof(t_philo));
-	core->log = malloc(sizeof(pthread_mutex_t));
+	core->shared_mutex = malloc(sizeof(pthread_mutex_t));
 	if (argc == 6)
 		core->n_times = ft_atoi(argv[5]);
 	else
@@ -45,7 +45,7 @@ static	void	fill_philo(t_core *core, size_t i)
 	philo->n_times = core->n_times;
 	philo->start_time = core->start_time;
 	philo->any_died = &core->any_died;
-	philo->log = core->log;
+	philo->shared_mutex = core->shared_mutex;
 	if (philo->n == 1)
 	{
 		core->philo[core->n_ph].forks.right = malloc(sizeof(pthread_mutex_t));
@@ -86,7 +86,7 @@ t_bool	initialize_threads(t_core *core)
 	size_t		i;
 
 	i = 1;
-	pthread_mutex_init(core->log, NULL);
+	pthread_mutex_init(core->shared_mutex, NULL);
 	while (i <= core->n_ph)
 	{
 		fill_philo(core, i);
@@ -102,5 +102,7 @@ t_bool	initialize_threads(t_core *core)
 	i = 0;
 	while (i < core->n_ph)
 		pthread_join(core->philo[i++].thread, NULL);
+	usleep(1 * 1000);
+	died(&core->philo[i]);
 	return (true);
 }

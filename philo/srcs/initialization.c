@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 13:07:51 by aborboll          #+#    #+#             */
-/*   Updated: 2021/10/01 17:03:11 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/10/01 17:52:48 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ static	t_bool	check_loop(t_core *core)
 	}
 	if (e == core->n_ph)
 		return (true);
-	usleep(1);
+	usleep(10);
 	return (check_loop(core));
 }
 

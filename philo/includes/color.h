@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/12 11:45:43 by aborboll          #+#    #+#             */
-/*   Updated: 2021/10/01 17:53:31 by aborboll         ###   ########.fr       */
+/*   Created: 2020/01/17 16:42:12 by aborboll          #+#    #+#             */
+/*   Updated: 2021/10/01 17:13:41 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/core.h"
+#ifndef COLOR_H
+# define COLOR_H
 
-int	main(int argc, char **argv)
-{
-	t_core	*core;
+# define C_X "\033[0m"
+# define C_YELLOW "\033[33m"
+# define C_RED "\033[31;1m"
+# define C_GREEN "\033[32;1m"
+# define C_CYAN "\033[36;1m"
+# define C_WHITE "\033[37;1m"
+# define C_BLUE "\033[34;1m"
+# define C_UP "\033[A"
+# define C_CUT "\033[K"
+# define C_U "\033[4m"
+# define C_BLINK "\033[5m"
+# define C_BOLD "\033[1m"
 
-	if (validate_args(argc, argv))
-	{
-		core = initialize(argc, argv);
-		if (initialize_threads(core))
-		{
-			clear_memory(core);
-			return (0);
-		}
-		usleep(50000);
-		clear_memory(core);
-	}
-	return (1);
-}
+#endif

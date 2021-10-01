@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 15:34:14 by aborboll          #+#    #+#             */
-/*   Updated: 2021/10/01 17:04:40 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/10/01 17:49:59 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ t_bool	forking(t_philo *philo)
 		return (false);
 	}
 	philo->status = "forking";
-	report_status(philo);
 	report_status(philo);
 	return (true);
 }

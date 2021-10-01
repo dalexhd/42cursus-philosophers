@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 13:07:51 by aborboll          #+#    #+#             */
-/*   Updated: 2021/09/28 18:09:14 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/10/01 17:50:25 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@ void	report_status(t_philo *philo)
 		pthread_mutex_unlock(philo->shared_mutex);
 		return ;
 	}
-	time = get_time();
+	time = get_time() - philo->start_time;
 	if (!ft_strcmp(philo->status, "forking"))
-		printf("%lld %zu %s\n", time, philo->n, D_R_FORKING);
+		printf("%lld %zu %s\n%lld %zu %s\n", time, philo->n,
+			D_R_FORKING, time, philo->n, D_R_FORKING);
 	else if (!ft_strcmp(philo->status, "eating"))
 		printf("%lld %li %s\n", time, philo->n, D_R_EATING);
 	else if (!ft_strcmp(philo->status, "sleeping"))

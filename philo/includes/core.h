@@ -40,6 +40,11 @@
 */
 # include "internal.h"
 
+/*
+** Incluimos la parte de colores.
+*/
+# include "color.h"
+
 typedef struct s_forks
 {
 	pthread_mutex_t	*right;

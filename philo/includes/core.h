@@ -112,6 +112,7 @@ void	ft_bzero(void *s, size_t n);
 int		ft_atoi(const char *str);
 int		ft_strcmp(const char *s1, const char *s2);
 void	*ft_calloc(size_t count, size_t size);
+void	ft_usleep(size_t time);
 void	ft_error(char *s);
 
 #endif

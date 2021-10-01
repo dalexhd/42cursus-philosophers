@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_usleep.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/12 11:45:43 by aborboll          #+#    #+#             */
-/*   Updated: 2021/10/01 20:51:47 by aborboll         ###   ########.fr       */
+/*   Created: 2021/10/01 19:52:48 by aborboll          #+#    #+#             */
+/*   Updated: 2021/10/01 20:43:50 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/core.h"
+#include "../../includes/core.h"
 
-int	main(int argc, char **argv)
+void	ft_usleep(size_t time)
 {
-	t_core	*core;
+	t_llong	count;
 
-	if (validate_args(argc, argv))
+	count = get_time() + time;
+	while (count > get_time())
 	{
-		core = initialize(argc, argv);
-		if (initialize_threads(core))
-		{
-			clear_memory(core);
-			return (0);
-		}
-		clear_memory(core);
+		usleep(500);
 	}
-	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 15:34:14 by aborboll          #+#    #+#             */
-/*   Updated: 2021/10/01 17:49:59 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/10/01 20:46:15 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,8 @@ t_bool	forking(t_philo *philo)
 {
 	pthread_mutex_lock(philo->forks.left);
 	pthread_mutex_lock(philo->forks.right);
-	if ((get_time() - philo->start_time) > (t_llong)philo->t_die)
-	{
+	if ((get_time() - philo->start_time) >= (t_llong)philo->t_die)
 		died(philo);
-		return (false);
-	}
 	philo->status = "forking";
 	report_status(philo);
 	return (true);
@@ -30,14 +27,9 @@ t_bool	eating(t_philo *philo)
 {
 	if (philo->any_died[0])
 		return (false);
-	if ((get_time() - philo->start_time) > (t_llong)philo->t_die)
-	{
-		died(philo);
-		return (false);
-	}
 	philo->status = "eating";
 	report_status(philo);
-	usleep(philo->t_eat * 1000);
+	ft_usleep(philo->t_eat);
 	return (true);
 }
 
@@ -47,7 +39,7 @@ t_bool	sleeping(t_philo *philo)
 		return (false);
 	philo->status = "sleeping";
 	report_status(philo);
-	usleep(philo->t_sleep * 1000);
+	ft_usleep(philo->t_sleep);
 	pthread_mutex_unlock(philo->forks.right);
 	pthread_mutex_unlock(philo->forks.left);
 	return (true);
@@ -59,6 +51,7 @@ t_bool	thinking(t_philo *philo)
 		return (false);
 	philo->status = "thinking";
 	report_status(philo);
+	ft_usleep(1);
 	return (true);
 }
 
@@ -69,5 +62,6 @@ t_bool	died(t_philo *philo)
 	philo->status = "died";
 	report_status(philo);
 	philo->any_died[0] = true;
+	exit(1);
 	return (true);
 }

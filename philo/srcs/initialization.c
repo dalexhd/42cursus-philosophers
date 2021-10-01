@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 13:07:51 by aborboll          #+#    #+#             */
-/*   Updated: 2021/09/28 18:03:31 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/10/01 17:03:11 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,32 @@ static	void	*monitor(void *arg)
 	return (NULL);
 }
 
+static	t_bool	check_loop(t_core *core)
+{
+	size_t	i;
+	size_t	e;
+
+	if (core->any_died)
+		return (false);
+	i = 1;
+	e = 0;
+	while (i <= core->n_ph)
+	{
+		if (!ft_strcmp(core->philo[i].status, "died"))
+		{
+			return (false);
+			break ;
+		}
+		else if (!ft_strcmp(core->philo[i].status, "thinking"))
+			e++;
+		i++;
+	}
+	if (e == core->n_ph)
+		return (true);
+	usleep(1);
+	return (check_loop(core));
+}
+
 t_bool	initialize_threads(t_core *core)
 {
 	int			err;
@@ -102,5 +128,5 @@ t_bool	initialize_threads(t_core *core)
 	i = 0;
 	while (i < core->n_ph)
 		pthread_join(core->philo[i++].thread, NULL);
-	return (true);
+	return (check_loop(core));
 }

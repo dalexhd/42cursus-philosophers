@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 15:34:14 by aborboll          #+#    #+#             */
-/*   Updated: 2021/10/01 16:36:10 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/10/01 17:04:40 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ t_bool	thinking(t_philo *philo)
 
 t_bool	died(t_philo *philo)
 {
+	if (philo->any_died[0])
+		return (false);
 	philo->status = "died";
 	report_status(philo);
 	philo->any_died[0] = true;

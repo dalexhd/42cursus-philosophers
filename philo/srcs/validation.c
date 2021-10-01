@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 12:45:17 by aborboll          #+#    #+#             */
-/*   Updated: 2021/08/13 12:51:47 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/10/01 23:53:52 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,7 @@ static	t_bool	check_args(int argc, char **argv)
 	ret = true;
 	while (++i < argc)
 	{
-		if (!ft_strevery(argv[i], ft_isdigit)
-			&& (argv[i][0] == '-' && !ft_strevery(&argv[i][1], ft_isdigit)))
+		if (!ft_strevery(argv[i], ft_isdigit))
 		{
 			ft_error(ERR_NOT_NUMBER);
 			ret = false;

@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 13:07:51 by aborboll          #+#    #+#             */
-/*   Updated: 2021/10/02 16:12:45 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/10/02 16:55:02 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static	void	fill_philo(t_core *core, size_t i)
 	t_philo	*philo;
 
 	philo = &core->philo[i];
-	philo->n = i;
+	philo->n_ph = core->n_ph;
 	philo->t_die = core->t_die;
 	philo->t_eat = core->t_eat;
 	philo->t_sleep = core->t_sleep;
@@ -85,8 +85,11 @@ static	t_bool	check_loop(t_core *core)
 	size_t	i;
 	size_t	e;
 
-	if (core->any_died)
+	if (core->n_ph == 1 || core->any_died)
+	{
+		ft_usleep(100);
 		return (false);
+	}
 	i = 1;
 	e = 0;
 	while (i <= core->n_ph)
@@ -115,6 +118,7 @@ t_bool	initialize_threads(t_core *core)
 	pthread_mutex_init(core->shared_mutex, NULL);
 	while (i <= core->n_ph)
 	{
+		core->philo[i].n = i;
 		fill_philo(core, i);
 		err = pthread_create(&core->philo[i].thread, NULL, monitor,
 				(void *)&core->philo[i]);

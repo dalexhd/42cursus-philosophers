@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 12:45:17 by aborboll          #+#    #+#             */
-/*   Updated: 2021/10/01 23:53:52 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/10/02 16:36:50 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static	t_bool	check_arg(size_t i, char *arg)
 	t_bool	ret;
 
 	ret = true;
-	if (i == 1 && ft_atoi(arg) < 2)
+	if (i == 1 && ft_atoi(arg) < 1)
 	{
 		ft_error(ERR_BAD_N_PH);
 		ret = false;

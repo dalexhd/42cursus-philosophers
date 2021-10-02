@@ -109,6 +109,7 @@ $(OBJ_LIB_DIR):
 
 # Normal objects
 $(NAME): $(OBJ_LIB_DIR) $(OBJ_DIR) $(OBJS)
+			@echo
 			$(CC) main.c $(OBJS) -I $(HEADER_DIR) $(FLAGS) -o $(OUTPUT)
 			@echo ${B}[-------------------------------------]${X}
 			@echo ${B}[------------ ${BOLD}OK${X}${B} - ${BOLD}$(NAME)${X}${B} -----------]${X}

@@ -154,7 +154,7 @@ re:			## Call fclean => all
 ##@ Testing
 
 test:		## Make test
-			cd .. && ./philosophers_test/run -p 1
+			cd .. && ./philosophers_test/run -p 1 -t 5
 
 ##@ Help
 help:		## View all available commands.

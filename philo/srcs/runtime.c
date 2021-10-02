@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 15:34:14 by aborboll          #+#    #+#             */
-/*   Updated: 2021/10/02 20:11:48 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/10/02 20:55:12 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_bool	forking(t_philo *philo)
 		died(philo);
 	pthread_mutex_lock(philo->forks.left);
 	pthread_mutex_lock(philo->forks.right);
-	if ((get_time() - philo->start_time) >= (t_llong)philo->t_die)
+	if ((get_time() - philo->start_time) > (t_llong)philo->t_die)
 		died(philo);
 	philo->status = "forking";
 	report_status(philo);

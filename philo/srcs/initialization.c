@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 13:07:51 by aborboll          #+#    #+#             */
-/*   Updated: 2021/10/02 16:55:02 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/10/02 19:04:40 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static	t_bool	check_loop(t_core *core)
 
 	if (core->n_ph == 1 || core->any_died)
 	{
-		ft_usleep(100);
+		ft_usleep(1);
 		return (false);
 	}
 	i = 1;

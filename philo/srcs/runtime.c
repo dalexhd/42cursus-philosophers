@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 15:34:14 by aborboll          #+#    #+#             */
-/*   Updated: 2021/10/02 16:48:51 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/10/02 19:15:11 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,5 @@ t_bool	died(t_philo *philo)
 		return (false);
 	philo->status = "died";
 	report_status(philo);
-	philo->any_died[0] = true;
-	exit(1);
+	return (true);
 }

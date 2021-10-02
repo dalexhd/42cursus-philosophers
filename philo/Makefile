@@ -9,6 +9,7 @@ FLAGS				=	-Wextra -Wall -Werror -pthread -g3 -fsanitize=address
 
 HEADER_DIR			=	includes/
 OBJ_DIR				=	obj/
+OBJ_LIB_DIR			=	obj/lib/
 SRC_DIR				=	srcs/
 LIB_DIR				=	lib/
 ifeq ($(shell whoami), runner)
@@ -25,6 +26,8 @@ OS					=	$(shell uname)
 USER				=	$(shell whoami)
 ARCH				=	$(shell uname -m | sed 's/x86_//;s/i[3-6]86/32/')
 VER					=	$(shell lsb_release -sr)
+COUNTER				= 	0
+COLUMNS				=	$(shell stty size | cut -d" " -f2)
 
 # Mandatory part
 
@@ -93,31 +96,35 @@ BG_X				=	$(shell printf "\033[0;39m")
 TAB					=	$(shell printf "\t")
 
 # Make all files.
-all:
-			@make $(NAME)
+all:	$(NAME)
 
 # Objects directory
 $(OBJ_DIR):
 			@echo ${CUT}[${Y}$(OUTPUT)]${X} ${B}Creating: ${R}$(OBJ_DIR)${X}
+			@mkdir -p $(OBJ_DIR)
+
+$(OBJ_LIB_DIR):
+			@echo ${CUT}[${Y}$(OUTPUT)]${X} ${B}Creating: ${R}$(OBJ_LIB_DIR)${X}
 			@mkdir -p $(OBJ_DIR)/lib
 
 # Normal objects
-$(NAME): $(OBJ_DIR) $(OBJS)
+$(NAME): $(OBJ_LIB_DIR) $(OBJ_DIR) $(OBJS)
+			@echo
+			@echo ${B}Crafting: ${R}$(OUTPUT)${X}
+			$(CC) main.c $(OBJS) -I $(HEADER_DIR) $(FLAGS) -o $(OUTPUT)
 			@echo ${B}[-------------------------------------]${X}
 			@echo ${B}[------------ ${BOLD}OK${X}${B} - ${BOLD}$(NAME)${X}${B} -----------]${X}
 			@echo ${B}[--- 🍴 Let\'s feed philosophers 🍴 ---]${X}
 			@echo ${B}[-------------------------------------]${X}
 
-$(OBJS):
-			@printf '${CUT}[${Y}$(OUTPUT)]${X} ${B}Compiling: ${X}'
-			@make $(OFILE)
-			@echo ${B}Crafting: ${R}$(OUTPUT)${X}
-			$(CC) main.c $(OBJS) -I $(HEADER_DIR) $(FLAGS) -o $(OUTPUT)
-			@echo
-
-$(OFILE):
-			@printf ${R}'$(@:%.o=%.c) '${X}
-			$(CC) -o $(OBJ_DIR)$@ -I$(HEADER_DIR) -c $(SRC_DIR)$(@:%.o=%.c) $(FLAGS)
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+			$(eval COUNTER=$(shell echo $$(($(COUNTER)+1))))
+			$(eval SIZE=$(shell wc -c < $<$))
+			$(eval STR=$(shell echo ${CUT}[${Y}$(OUTPUT)]${X} ${B}Compiling: ${X}$(SIZE) Bytes${R} $<${X}))
+			$(eval COMPILED=$(shell echo '$(COUNTER) files compiled'))
+			$(eval LEN=$(shell echo $$(($(COLUMNS)-$(shell echo \'$(STR)$(COMPILED)\' | wc -m)))))
+			@$(SH) -c "printf '\r$(STR)%$(LEN)s $(COMPILED) $(shell seq -s. $(COUNTER)|tr -d '[:digit:]')\0'"
+			$(CC) -c $(FLAGS) -I$(HEADER_DIR) $< -o $@
 
 ##@ Cleaning
 clean:		## Clean all objects.

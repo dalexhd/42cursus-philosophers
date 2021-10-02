@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 13:07:51 by aborboll          #+#    #+#             */
-/*   Updated: 2021/10/02 19:13:01 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/10/02 20:17:55 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,8 @@ void	report_status(t_philo *philo)
 
 	pthread_mutex_lock(philo->shared_mutex);
 	if (philo->any_died[0] == 1)
-	{
-		pthread_mutex_unlock(philo->shared_mutex);
-		return ;
-	}
-	time = get_time() - philo->start_time;
+		return ((void)(pthread_mutex_unlock(philo->shared_mutex)));
+	time = get_time() - philo->tm_time;
 	if (!ft_strcmp(philo->status, "forking"))
 		printf("%lld %zu %s\n%lld %zu %s\n", time, philo->n,
 			D_R_FORKING, time, philo->n, D_R_FORKING);

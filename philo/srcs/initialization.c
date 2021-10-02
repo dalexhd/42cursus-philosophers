@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 13:07:51 by aborboll          #+#    #+#             */
-/*   Updated: 2021/10/02 19:04:40 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/10/02 20:15:09 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,16 @@ static	void	*monitor(void *arg)
 
 	times = 0;
 	philo = ((t_philo *)arg);
+	philo->tm_time = philo->start_time;
 	while (times < philo->n_times)
 	{
+		philo->start_time = get_time();
 		forking(philo);
 		eating(philo);
 		sleeping(philo);
 		thinking(philo);
-		times++;
+		if (philo->n_times > 1)
+			times++;
 	}
 	return (NULL);
 }

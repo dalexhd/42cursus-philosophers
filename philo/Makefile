@@ -119,7 +119,7 @@ $(NAME): $(OBJ_LIB_DIR) $(OBJ_DIR) $(OBJS)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 			$(eval COUNTER=$(shell echo $$(($(COUNTER)+1))))
-			$(eval SIZE=$(shell wc -c < $<$))
+			$(eval SIZE=$(shell wc -c < $<))
 			$(eval STR=$(shell echo ${CUT}[${Y}$(OUTPUT)]${X} ${B}Compiling: ${X}$(SIZE) Bytes${R} $<${X}))
 			$(eval COMPILED=$(shell echo '$(COUNTER) files compiled'))
 			$(eval LEN=$(shell echo $$(($(COLUMNS)-$(shell echo \'$(STR)$(COMPILED)\' | wc -m)))))

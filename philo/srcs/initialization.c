@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 13:07:51 by aborboll          #+#    #+#             */
-/*   Updated: 2021/10/02 20:15:09 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/10/03 18:02:08 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ static	void	*monitor(void *arg)
 	times = 0;
 	philo = ((t_philo *)arg);
 	philo->tm_time = philo->start_time;
+	philo->last_meal = philo->start_time;
 	while (times < philo->n_times)
 	{
 		philo->start_time = get_time();
@@ -97,6 +98,12 @@ static	t_bool	check_loop(t_core *core)
 	e = 0;
 	while (i <= core->n_ph)
 	{
+		if ((get_time() - core->philo[i].last_meal)
+			>= (t_llong)core->philo[i].t_die)
+		{
+			died(&core->philo[i]);
+			return (false);
+		}
 		if (!ft_strcmp(core->philo[i].status, "died"))
 			return (false);
 		else if (!ft_strcmp(core->philo[i].status, "thinking"))

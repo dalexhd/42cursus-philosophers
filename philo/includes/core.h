@@ -62,6 +62,7 @@ typedef struct s_philo
 	size_t			t_sleep;
 	t_llong			n_times;
 	t_llong			start_time;
+	t_llong			last_meal;
 	t_llong			tm_time;
 	pthread_mutex_t	*shared_mutex;
 	int				*any_died;

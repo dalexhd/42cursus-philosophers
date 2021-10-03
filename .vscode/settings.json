@@ -16,7 +16,8 @@
         "mutex": "c",
         "version": "c",
         "cmath": "c",
-        "*.tcc": "c"
+        "*.tcc": "c",
+        "locale": "c"
     },
     "editor.defaultFormatter": "xaver.clang-format",
     "editor.formatOnPaste": false,

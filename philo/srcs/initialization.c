@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 13:07:51 by aborboll          #+#    #+#             */
-/*   Updated: 2021/10/03 18:02:08 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/10/04 17:57:55 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,34 +89,27 @@ static	t_bool	check_loop(t_core *core)
 	size_t	i;
 	size_t	e;
 
-	if (core->n_ph == 1 || core->any_died)
+	while (1)
 	{
-		ft_usleep(1);
-		return (false);
-	}
-	i = 1;
-	e = 0;
-	while (i <= core->n_ph)
-	{
-		if ((get_time() - core->philo[i].last_meal)
-			>= (t_llong)core->philo[i].t_die)
+		if (core->n_ph == 1 || core->any_died)
+			return (false);
+		i = 1;
+		e = 0;
+		while (i <= core->n_ph)
 		{
-			died(&core->philo[i]);
-			return (false);
+			if ((size_t)(get_time() - core->philo[i].last_meal)
+				>= core->philo[i].t_die
+					&& core->philo[i].n_times < core->n_times)
+				return (!died(&core->philo[i]));
+			if (!ft_strcmp(core->philo[i].status, "died"))
+				return (false);
+			else if (!ft_strcmp(core->philo[i].status, "thinking"))
+				e++;
+			i++;
 		}
-		if (!ft_strcmp(core->philo[i].status, "died"))
-			return (false);
-		else if (!ft_strcmp(core->philo[i].status, "thinking"))
-			e++;
-		i++;
+		if (e == core->n_ph)
+			return (true);
 	}
-	if (e == core->n_ph)
-	{
-		ft_usleep(100);
-		return (true);
-	}
-	ft_usleep(1);
-	return (check_loop(core));
 }
 
 t_bool	initialize_threads(t_core *core)

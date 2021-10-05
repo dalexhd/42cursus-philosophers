@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 13:07:51 by aborboll          #+#    #+#             */
-/*   Updated: 2021/10/05 18:29:23 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/10/05 21:24:04 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	report_status(t_philo *philo)
 	if (!ft_strcmp(philo->status, "forking"))
 		printf("%lld %zu %s\n%lld %zu %s\n", time, philo->n,
 			D_R_FORKING, time, philo->n, D_R_FORKING);
+	else if (!ft_strcmp(philo->status, "forking1"))
+		printf("%lld %zu %s\n", time, philo->n, D_R_FORKING);
 	else if (!ft_strcmp(philo->status, "eating"))
 		printf("%lld %li %s\n", time, philo->n, D_R_EATING);
 	else if (!ft_strcmp(philo->status, "sleeping"))

@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 13:07:51 by aborboll          #+#    #+#             */
-/*   Updated: 2021/10/05 19:20:31 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/10/05 21:11:50 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static	void	fill_philo(t_core *core, size_t i)
 	philo->n_times = core->n_times;
 	philo->start_time = core->start_time;
 	philo->any_died = &core->any_died;
-	philo->status = "thinking";
 	philo->shared_mutex = core->shared_mutex;
 	if (philo->n == 1)
 	{
@@ -89,37 +88,26 @@ static	t_bool	check_loop(t_core *core)
 {
 	size_t	i;
 	size_t	e;
-	t_philo *philo;
-	t_llong time;
 
 	while (1)
 	{
-		if (core->n_ph == 1 || core->any_died)
+		if (core->any_died)
 			return (false);
 		i = 1;
 		e = 0;
 		while (i <= core->n_ph)
 		{
-			philo = &core->philo[i];
-			time = get_time();
-			if (philo->last_meal > 0 && (time - philo->last_meal)
-				> (t_llong)philo->t_die)
-			{
-				printf("(size_t)(%llu - %llu)=%llu > %llu\n",
-					time,
-					philo->last_meal,
-					(time - philo->last_meal),
-					(t_llong)philo->t_die
-					);
-				return (!died(philo));
-			}
-			if (!ft_strcmp(philo->status, "died"))
+			if ((size_t)(get_time() - core->philo[i].last_meal)
+				>= core->philo[i].t_die
+					&& core->philo[i].n_times < core->n_times)
+				return (!died(&core->philo[i]));
+			if (!ft_strcmp(core->philo[i].status, "died"))
 				return (false);
-			else if (!ft_strcmp(philo->status, "thinking"))
+			else if (!ft_strcmp(core->philo[i].status, "thinking"))
 				e++;
 			i++;
 		}
-		if (e == core->n_ph)
+		if (core->ph_n > 1 && e == core->n_ph)
 			return (true);
 	}
 }
@@ -134,6 +122,7 @@ t_bool	initialize_threads(t_core *core)
 	while (i <= core->n_ph)
 	{
 		core->philo[i].n = i;
+		core->philo[i].status = "thinking";
 		fill_philo(core, i);
 		err = pthread_create(&core->philo[i].thread, NULL, monitor,
 				(void *)&core->philo[i]);

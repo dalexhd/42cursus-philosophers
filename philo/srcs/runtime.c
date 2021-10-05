@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 15:34:14 by aborboll          #+#    #+#             */
-/*   Updated: 2021/10/04 20:39:32 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/10/05 18:23:22 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_bool	eating(t_philo *philo)
 		return (false);
 	philo->last_meal = get_time();
 	philo->status = "eating";
+	philo->n_times++;
 	report_status(philo);
 	ft_usleep(philo->t_eat);
 	return (true);

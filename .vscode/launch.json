@@ -34,10 +34,10 @@
 			"name": "Launch",
 			"program": "${workspaceFolder}/philo/philo",
 			"args": [
-				"2",
-				"3",
 				"4",
-				"-4"
+				"120",
+				"60",
+				"60"
 			],
 			"cwd": "${workspaceFolder}"
 		}

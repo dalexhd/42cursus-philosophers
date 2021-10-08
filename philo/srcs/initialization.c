@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 13:07:51 by aborboll          #+#    #+#             */
-/*   Updated: 2021/10/05 21:43:46 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/10/08 07:52:42 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_core	*initialize(int argc, char **argv)
 	core->t_sleep = ft_atoi(argv[4]);
 	core->start_time = get_time();
 	core->any_died = false;
+	core->all_ate = false;
 	core->philo = (t_philo *)ft_calloc(core->n_ph + 1, sizeof(t_philo));
 	core->shared_mutex = malloc(sizeof(pthread_mutex_t));
 	if (argc == 6)
@@ -71,7 +72,7 @@ static	void	*monitor(void *arg)
 	philo = ((t_philo *)arg);
 	philo->tm_time = philo->start_time;
 	philo->last_meal = philo->start_time;
-	while (times < philo->n_times)
+	while (times < philo->n_times && !philo->all_ate[0])
 	{
 		philo->start_time = get_time();
 		forking(philo);
@@ -108,7 +109,10 @@ static	t_bool	check_loop(t_core *core)
 			i++;
 		}
 		if (core->n_ph > 1 && e == core->n_ph)
+		{
+			core->all_ate = true;
 			return (true);
+		}
 	}
 }
 
@@ -123,6 +127,7 @@ t_bool	initialize_threads(t_core *core)
 	{
 		core->philo[i].n = i;
 		core->philo[i].status = "thinking";
+		core->philo[i].all_ate = &core->all_ate;
 		fill_philo(core, i);
 		err = pthread_create(&core->philo[i].thread, NULL, monitor,
 				(void *)&core->philo[i]);

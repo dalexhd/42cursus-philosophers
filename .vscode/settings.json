@@ -17,7 +17,13 @@
         "version": "c",
         "cmath": "c",
         "*.tcc": "c",
-        "locale": "c"
+        "locale": "c",
+        "__hash_table": "c",
+        "__locale": "c",
+        "algorithm": "c",
+        "functional": "c",
+        "ios": "c",
+        "complex": "c"
     },
     "editor.defaultFormatter": "xaver.clang-format",
     "editor.formatOnPaste": false,

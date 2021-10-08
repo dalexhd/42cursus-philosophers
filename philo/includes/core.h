@@ -67,6 +67,7 @@ typedef struct s_philo
 	pthread_mutex_t	*shared_mutex;
 	int				*any_died;
 	char			*status;
+	t_bool			*all_ate;
 }				t_philo;
 
 typedef struct s_core
@@ -80,6 +81,7 @@ typedef struct s_core
 	size_t			ph_n;
 	t_philo			*philo;
 	int				any_died;
+	t_bool			all_ate;
 	pthread_mutex_t	*shared_mutex;
 }				t_core;
 

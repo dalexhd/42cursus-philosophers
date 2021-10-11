@@ -6,75 +6,75 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 15:34:14 by aborboll          #+#    #+#             */
-/*   Updated: 2021/10/05 21:43:50 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/10/11 17:37:18 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/core.h"
 
-t_bool	forking(t_philo *philo)
+t_bool	forking(t_philo *ph)
 {
-	if (philo->n_ph != 1)
+	if (ph->n_ph != 1)
 	{
-		pthread_mutex_lock(philo->forks.left);
-		pthread_mutex_lock(philo->forks.right);
+		pthread_mutex_lock(ph->forks.left);
+		pthread_mutex_lock(ph->forks.right);
 	}
-	if ((get_time() - philo->start_time) > (t_llong)philo->t_die)
-		died(philo);
-	if (philo->n_ph == 1)
+	if ((get_time() - ph->start_time) > (t_llong)ph->t_d)
+		died(ph);
+	if (ph->n_ph == 1)
 	{
-		philo->status = "forking1";
-		report_status(philo);
-		philo->status = "died";
-		report_status(philo);
-		philo->any_died[0] = 1;
+		ph->status = "forking1";
+		report_status(ph);
+		ph->status = "died";
+		report_status(ph);
+		ph->any_died[0] = 1;
 		ft_usleep(1);
 		return (true);
 	}
-	philo->status = "forking";
-	report_status(philo);
+	ph->status = "forking";
+	report_status(ph);
 	return (true);
 }
 
-t_bool	eating(t_philo *philo)
+t_bool	eating(t_philo *ph)
 {
-	if (philo->n_ph == 1 || philo->any_died[0])
+	if (ph->n_ph == 1 || ph->any_died[0])
 		return (false);
-	philo->last_meal = get_time();
-	philo->status = "eating";
-	report_status(philo);
-	ft_usleep(philo->t_eat);
+	ph->last_meal = get_time();
+	ph->status = "eating";
+	report_status(ph);
+	ft_usleep(ph->t_eat);
 	return (true);
 }
 
-t_bool	sleeping(t_philo *philo)
+t_bool	sleeping(t_philo *ph)
 {
-	if (philo->n_ph == 1 || philo->any_died[0])
+	if (ph->n_ph == 1 || ph->any_died[0])
 		return (false);
-	philo->status = "sleeping";
-	report_status(philo);
-	pthread_mutex_unlock(philo->forks.right);
-	pthread_mutex_unlock(philo->forks.left);
-	ft_usleep(philo->t_sleep);
+	ph->status = "sleeping";
+	report_status(ph);
+	pthread_mutex_unlock(ph->forks.right);
+	pthread_mutex_unlock(ph->forks.left);
+	ft_usleep(ph->t_sleep);
 	return (true);
 }
 
-t_bool	thinking(t_philo *philo)
+t_bool	thinking(t_philo *ph)
 {
-	if (philo->n_ph == 1 || philo->any_died[0])
+	if (ph->n_ph == 1 || ph->any_died[0])
 		return (false);
-	philo->status = "thinking";
-	report_status(philo);
+	ph->status = "thinking";
+	report_status(ph);
 	return (true);
 }
 
-t_bool	died(t_philo *philo)
+t_bool	died(t_philo *ph)
 {
-	if (philo->n_ph == 1 || philo->any_died[0])
+	if (ph->n_ph == 1 || ph->any_died[0])
 		return (false);
-	pthread_mutex_lock(philo->shared_mutex);
-	philo->status = "died";
-	pthread_mutex_unlock(philo->shared_mutex);
-	report_status(philo);
+	pthread_mutex_lock(ph->shared_mutex);
+	ph->status = "died";
+	pthread_mutex_unlock(ph->shared_mutex);
+	report_status(ph);
 	return (true);
 }

@@ -57,7 +57,7 @@ typedef struct s_philo
 	t_forks			forks;
 	size_t			n;
 	size_t			n_ph;
-	size_t			t_die;
+	size_t			t_d;
 	size_t			t_eat;
 	size_t			t_sleep;
 	t_llong			n_times;
@@ -73,13 +73,13 @@ typedef struct s_philo
 typedef struct s_core
 {
 	size_t			n_ph;
-	size_t			t_die;
+	size_t			t_d;
 	size_t			t_eat;
 	size_t			t_sleep;
 	t_llong			start_time;
 	t_llong			n_times;
 	size_t			ph_n;
-	t_philo			*philo;
+	t_philo			*ph;
 	int				any_died;
 	t_bool			all_ate;
 	pthread_mutex_t	*shared_mutex;
@@ -92,13 +92,13 @@ typedef struct s_core
 t_core	*initialize(int argc, char **argv);
 t_bool	initialize_threads(t_core *core);
 t_bool	validate_args(int argc, char **argv);
-void	report_status(t_philo *philo);
+void	report_status(t_philo *ph);
 void	clear_memory(t_core *core);
-t_bool	forking(t_philo *philo);
-t_bool	eating(t_philo *philo);
-t_bool	sleeping(t_philo *philo);
-t_bool	thinking(t_philo *philo);
-t_bool	died(t_philo *philo);
+t_bool	forking(t_philo *ph);
+t_bool	eating(t_philo *ph);
+t_bool	sleeping(t_philo *ph);
+t_bool	thinking(t_philo *ph);
+t_bool	died(t_philo *ph);
 t_llong	get_time(void);
 
 /*

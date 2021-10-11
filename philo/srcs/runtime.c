@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 15:34:14 by aborboll          #+#    #+#             */
-/*   Updated: 2021/10/11 17:37:18 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/10/11 18:39:03 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,6 @@ t_bool	died(t_philo *ph)
 	ph->status = "died";
 	pthread_mutex_unlock(ph->shared_mutex);
 	report_status(ph);
+	ph->any_died[0] = true;
 	return (true);
 }

@@ -5,7 +5,7 @@ OUTPUT				=	philo
 CC					=	@gcc
 SH					=	@bash
 RM					=	@/bin/rm -rf
-FLAGS				=	-Wextra -Wall -Werror -pthread -g3 -fsanitize=address
+FLAGS				=	-Wextra -Wall -Werror -pthread -g1 -fsanitize=address
 
 HEADER_DIR			=	includes/
 OBJ_DIR				=	obj/

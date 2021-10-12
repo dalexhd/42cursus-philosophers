@@ -6,7 +6,7 @@
 /*   By: aborboll <aborboll@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 13:07:51 by aborboll          #+#    #+#             */
-/*   Updated: 2021/10/11 18:01:44 by aborboll         ###   ########.fr       */
+/*   Updated: 2021/10/12 19:28:39 by aborboll         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,7 @@ static	t_bool	check_loop(t_core *core)
 		e = 0;
 		while (++i <= core->n_ph)
 		{
-			if ((size_t)(get_time() - core->ph[i].last_meal) >= core->ph[i].t_d
-					&& core->ph[i].n_times < core->n_times)
+			if ((size_t)(get_time() - core->ph[i].last_meal) >= core->ph[i].t_d)
 				return (!died(&core->ph[i]));
 			if (!ft_strcmp(core->ph[i].status, "died"))
 				return (false);
@@ -136,5 +135,6 @@ t_bool	initialize_threads(t_core *core)
 		}
 		i++;
 	}
+	usleep(50);
 	return (check_loop(core));
 }
